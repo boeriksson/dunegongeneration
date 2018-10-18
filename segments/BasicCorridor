@@ -1,0 +1,26 @@
+public class BasicCorridor : Segment {
+
+    public BasicCorridor(int x, int z, int direction) {
+        this._x = x;
+        this._z = z;
+        this._direction = direction;
+        this._checkSpace = getCheckSpaceByDir(direction);
+        this._space = new [,] {{ _x, _z }};
+    }
+
+    public static int[,] getCheckSpaceByDir(int dir) {
+        int[,] checkSpace;
+        switch(dir) {
+            case 0:
+                return new [,] {{x + 20, z}, {x + 20, z - 20}, {x + 40, z - 20}, {x + 40, z}, {x + 40, z + 20}, {x + 20, z + 20}};
+            case 1:
+                return new [,] {{x, z + 20}, {x + 20, z + 20}, {x + 20, z + 40}, {x, z + 40}, {x - 20, z + 40}, {x - 20, z + 20}};
+            case 2:
+                return new [,] {{x, z - 20}, {x + 20, z - 20}, {x + 20, z - 40}, {x, z - 40}, {x - 20, z - 40}, {x - 20, z - 20}};
+            case 3:
+                return new [,] {{x - 20, z}, {x - 20, z - 20}, {x - 40, z - 20}, {x - 40, z}, {x - 40, z + 20}, {x - 20, z + 20}};
+            default:
+                throw new Exception("dir större än 3 - dir: " + dir);
+        }
+    }
+}
